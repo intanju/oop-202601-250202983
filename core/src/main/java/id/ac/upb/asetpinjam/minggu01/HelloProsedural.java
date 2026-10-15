@@ -13,7 +13,7 @@ public final class HelloProsedural {
      * Contoh bentuk: "Hello Aset-Pinjam, saya Budi (2310112345)".
      */
     public static String sapa(String nama, String nim) {
-        throw new UnsupportedOperationException("TODO minggu 1: HelloProsedural.sapa");
+        return "Halo, Selamat datang di Aset-Pinjam. Saya " + nama + ", NIM: " + nim;
     }
 
     public static void main(String[] args) {

@@ -75,3 +75,10 @@ Tambahkan di sini keputusan lain yang Anda ambil: rumus denda progresif, perubah
 - Alasan: untuk menghindari ketidaksesuaian data akibat kesalahan pengetikan, seperti adanya spasi berlebih.
 - Dampak ke kode: Penambahan fungsi trim pada konstruktor Aset dan setter setNama
 - Tes yang membuktikan: `core/src/test/java/id/ac/upb/asetpinjam/Minggu02AsetTest.java`.
+
+### AL-02: Rumus Denda Progresif
+- Pertanyaan: Bagaimana denda progresif dihitung agar makin berat bila makin lama terlambat?
+- Keputusan: Denda dasar (flat) ditambah persentase bertingkat: hari 1-2 tambahan 0%, hari 3-5 tambahan 15%, hari 6-10 tambahan 30%, hari 11 ke atas tambahan 60%.
+- Alasan: Ada masa tenggang 2 hari, lalu tambahan naik per tingkat sehingga keterlambatan lama terasa lebih berat.
+- Dampak ke kode: `DendaProgresif.hitung`
+- Tes yang membuktikan: `core/src/test/java/id/ac/upb/asetpinjam/Minggu05AbstraksiTest.java`

@@ -18,10 +18,10 @@ Format tiap entri:
 
 ### A-01: Batas Waktu Bentrok
 - Pertanyaan: Apa definisi bentrok di batas waktu? Peminjaman 09:00-11:00 dan 11:00-13:00 pada aset yang sama: bentrok atau tidak?
-- Keputusan: (isi)
-- Alasan: (isi)
-- Dampak ke kode: (isi)
-- Tes yang membuktikan: (isi)
+- Keputusan: Tidak bentrok. Rentang waktu diperlakukan setengah terbuka, yaitu [mulai, selesai), sehingga peminjaman yang selesai tepat saat peminjaman lain mulai dianggap bersambung, bukan tumpang tindih.
+- Alasan: Aset yang dikembalikan pukul 11:00 sudah tersedia lagi untuk dipinjam mulai pukul 11:00. Aturan ini juga lazim pada penjadwalan berbasis rentang dan mencegah bentrok palsu hanya karena satu titik waktu yang sama.
+- Dampak ke kode: `JadwalPeminjaman.bentrok` menganggap bentrok hanya jika `baru.mulai < lama.selesai` dan `lama.mulai < baru.selesai`.
+- Tes yang membuktikan: `BatasBentrokTest.selesaiSamaDenganMulaiTidakBentrok`, `BatasBentrokTest.selesaiSamaDenganMulaiTidakBentrokMeskiUrutanTerbalik`, dan `BatasBentrokTest.selisihSatuMenitTetapBentrok` di `core/src/test/java/id/ac/upb/asetpinjam/mahasiswa/`.
 
 ### A-02: Perhitungan Denda untuk Sisa Jam/Menit
 - Pertanyaan: Bagaimana denda dihitung bila terlambat 1 menit atau 25 jam? (Sistem hanya mengenal hari bulat pada hitungDenda.)
@@ -73,7 +73,7 @@ Tambahkan di sini keputusan lain yang Anda ambil: rumus denda progresif, perubah
 - Pertanyaan: Apakah string input untuk kode dan nama aset perlu dinormalisasi (menggunakan `trim()`) sebelum disimpan?
 - Keputusan: Ya, menggunakan fungsi `trim()` untuk menghilangkan spasi yang tidak disengaja pada awal atau akhir input, sementara untuk pengecekan kekosongan data tetap menggunakan method `isBlank()`.
 - Alasan: untuk menghindari ketidaksesuaian data akibat kesalahan pengetikan, seperti adanya spasi berlebih.
-- Dampak ke kode: Penambahan fungsi trim pada konstruktor Aset dan setter setNama
+- Dampak ke kode: Penambahan fungsi trim pada konstruktor Aset dan setter setNama, serta konstruktor Laptop dan AlatLab
 - Tes yang membuktikan: `core/src/test/java/id/ac/upb/asetpinjam/Minggu02AsetTest.java`.
 
 ### AL-02: Rumus Denda Progresif
